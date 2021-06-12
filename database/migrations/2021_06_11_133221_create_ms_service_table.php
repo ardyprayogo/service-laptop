@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateMsServiceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,19 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('ms_services', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('address')->nullable();
-            $table->rememberToken();
+            $table->bigInteger('service_type_id')->unsigned();
+            $table->string('service', 50);
+            $table->integer('price')->default(0);
+            $table->string('desc', 150)->nullable();
             $table->string('status', 2)->default('00');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->index([
+                'status'
+            ]);
+            $table->foreign('service_type_id')->references('id')->on('ms_service_types');
         });
     }
 
@@ -33,6 +36,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('ms_services');
     }
 }
