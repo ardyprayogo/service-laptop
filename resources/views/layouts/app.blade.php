@@ -9,13 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('admin/vendor/jquery/jquery.min.js.js') }}" defer></script>
-    <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js.js') }}" defer></script>
-    <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js.js') }}" defer></script>
-    <script src="{{ asset('admin/js/sb-admin-2.min.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -24,7 +17,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
 </head>
 <body>
   <body id="page-top">
@@ -47,7 +43,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ Request::is('home') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('home') ? 'active' : '' }} {{ Request::is('/') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('home') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -213,5 +209,16 @@
             </div>
         </div>
     </div>
+    
+    <!-- Scripts -->
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+    <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}" defer></script>
+    <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
+    <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}" defer></script>
+    <script src="{{ asset('admin/js/sb-admin-2.min.js') }}" defer></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('admin/vendor/datatables/jquery.dataTables.min.js') }}" defer></script>
+    <script src="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.js') }}" defer></script>
 </body>
 </html>
