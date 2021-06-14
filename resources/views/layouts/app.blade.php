@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
@@ -56,8 +56,8 @@
             <div class="sidebar-heading">
                 Management
             </div>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('home') }}">
+            <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
+              <a class="nav-link" href="{{ route('user') }}">
                   <i class="fas fa-fw fa-user"></i>
                   <span>Admin</span></a>
             </li>
@@ -131,7 +131,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ $user->name }}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -212,7 +212,7 @@
     
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-    <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}" defer></script>
+    <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}" defer></script>
     <script src="{{ asset('admin/js/sb-admin-2.min.js') }}" defer></script>
@@ -220,5 +220,8 @@
     <!-- Page level plugins -->
     <script src="{{ asset('admin/vendor/datatables/jquery.dataTables.min.js') }}" defer></script>
     <script src="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.js') }}" defer></script>
+    
+    @yield('script')
+    
 </body>
 </html>
