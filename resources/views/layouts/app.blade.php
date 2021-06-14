@@ -61,8 +61,8 @@
                   <i class="fas fa-fw fa-user"></i>
                   <span>Admin</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('home') }}">
+            <li class="nav-item {{ Request::is('customers') ? 'active' : '' }}">
+              <a class="nav-link" href="{{ route('customers') }}">
                   <i class="fas fa-fw fa-address-book"></i>
                   <span>Customers</span></a>
             </li>

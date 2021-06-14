@@ -17,9 +17,15 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Auth::routes();
 
 Route::group(array('middleware'=> ['auth']), function() {
+    //home
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    //user
     Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
     Route::get('/user-json', [App\Http\Controllers\UserController::class, 'getUsers'])->name('user.json');
+    //customers
+    Route::get('/customers', [App\Http\Controllers\CustomersController::class, 'index'])->name('customers');
+    Route::get('/customers-json', [App\Http\Controllers\CustomersController::class, 'getCustomers'])->name('customers.json');
+
 });
 
 

@@ -1,12 +1,13 @@
 @extends('layouts.app')
-@section('title', 'Admin')
+@section('title', 'Customer')
 @section('content')
 <div class="card o-hidden border-0 shadow-lg py-5 px-5">
     <div class="table-responsive">
-        <table class="table table-bordered" id="users-table" width=100%>
+        <table class="table table-bordered" id="customers-table" width=100%>
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Telp</th>
                     <th>Email</th>
                     <th>Address</th>
                     <th>Actions</th>
@@ -20,12 +21,13 @@
 @section('script')
 <script>
     $(document).ready(function() {
-        $('#users-table').dataTable({
+        $('#customers-table').dataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{url('user-json')}}",
+            ajax: "{{url('customers-json')}}",
             columns: [
-                {data: 'name', name: 'name'},
+                {data: 'customer', name: 'customer'},
+                {data: 'telp', name: 'telp'},
                 {data: 'email', name: 'email'},
                 {data: 'address', name: 'address'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
