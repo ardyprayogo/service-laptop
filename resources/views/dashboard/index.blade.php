@@ -8,6 +8,7 @@
         </div>
     @endif
 
-    {{ __('You are logged in!') }}
+    {{ 'Welcome ' . Auth::user()->name }}
+    {{ __(', you are logged in!') }}
 </div>
 @endsection

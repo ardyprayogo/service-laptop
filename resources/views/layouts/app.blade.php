@@ -43,7 +43,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ Request::is('home') ? 'active' : '' }} {{ Request::is('/') ? 'active' : '' }}">
+            <li class="nav-item {{ Route::is('home') ? 'active' : '' }} {{ Route::is('/') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('home') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -56,12 +56,12 @@
             <div class="sidebar-heading">
                 Management
             </div>
-            <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
+            <li class="nav-item {{ Route::is('user') ? 'active' : '' }}">
               <a class="nav-link" href="{{ route('user') }}">
                   <i class="fas fa-fw fa-user"></i>
                   <span>Admin</span></a>
             </li>
-            <li class="nav-item {{ Request::is('customers') ? 'active' : '' }}">
+            <li class="nav-item {{ Route::is('customers') ? 'active' : '' }}">
               <a class="nav-link" href="{{ route('customers') }}">
                   <i class="fas fa-fw fa-address-book"></i>
                   <span>Customers</span></a>
@@ -74,15 +74,15 @@
             <div class="sidebar-heading">
                 Services
             </div>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('home') }}">
+            <li class="nav-item {{ Route::is('service.types') ? 'active' : '' }}">
+              <a class="nav-link" href="{{ route('service.types') }}">
                   <i class="fas fa-fw fa-database"></i>
-                  <span>Service Type</span></a>
+                  <span>Service Types</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('home') }}">
+            <li class="nav-item {{ Route::is('services') ? 'active' : '' }}">
+              <a class="nav-link" href="{{ route('services') }}">
                   <i class="fas fa-fw fa-wrench"></i>
-                  <span>Service</span></a>
+                  <span>Services</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
