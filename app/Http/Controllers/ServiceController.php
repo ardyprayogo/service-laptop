@@ -25,8 +25,33 @@ class ServiceController extends Controller
         return $rules;
     }
 
+    private function validationRules() {
+        $rules = [
+            'service_type_id' => 'required',
+            'service' => 'required',
+            'price' => 'required|numeric',
+            'desc' => 'required'
+        ];
+        return $rules;
+    }
+
     public function index() {
         return view('services/index');
+    }
+
+    public function create(Request $request) {
+        if ($request->isMethod('post')) {
+            $input = $request->all();
+            $validation = Validator::make($input, $this->validationRules());
+            if ($validation->fails())
+                return redirect()->back()->withInput()->withErrors($validation->errors());
+            
+            $this->service->create($input);
+            return redirect('services')->with('success', 'Service created!');
+        }
+
+        $types = $this->getOptionTypes();
+        return view('services/form',compact('types'));
     }
 
     public function createType(Request $request) {
@@ -43,6 +68,22 @@ class ServiceController extends Controller
         return view('service-types/form');
     }
 
+    public function update($id, Request $request) {
+        if ($request->isMethod('post')) {
+            $input = $request->all();
+            $validation = Validator::make($input, $this->validationRules());
+            if ($validation->fails())
+                return redirect()->back()->withInput()->withErrors($validation->errors());
+            
+            $this->service->find($id)->update($input);
+            return redirect('services')->with('success', 'Service updated!');
+        }
+
+        $model = $this->service->find($id);
+        $types = $this->getOptionTypes();
+        return view('services/form', compact('model', 'types'));
+    }
+
     public function updateType($id, Request $request) {
         if ($request->isMethod('post')) {
             $input = $request->all();
@@ -56,6 +97,12 @@ class ServiceController extends Controller
 
         $model = $this->type->find($id);
         return view('service-types/form', compact('model'));
+    }
+
+    public function destroy($id) {
+        $model = $this->service->find($id);
+        $model->delete();
+        return redirect('services')->with('success', 'Service deleted!');
     }
 
     public function destroyType($id) {
@@ -87,11 +134,20 @@ class ServiceController extends Controller
                             ->get();
         return Datatables::of($data)
                             ->addColumn('action', function($row){
-                                $btn = '<a href="'.$row->id.'" class="edit btn btn-primary btn-sm">Edit</a>';
-                                $btn = $btn.' <a href="'.$row->id.'" class="btn btn-danger btn-sm">Delete</a>';
+                                $btn = '<a href="'.url('services/update').'/'.$row->id.'" class="edit btn btn-primary btn-sm">Edit</a>';
+                                $btn = $btn.' <a href="'.url('services/delete').'/'.$row->id.'" class="btn btn-danger btn-sm">Delete</a>';
                                 return $btn;
                             })
                             ->rawColumns(['action'])
                             ->make(true);
+    }
+
+    private function getOptionTypes() {
+        $types = $this->type->where('status', '00')->get();
+        $type_options = [];
+        foreach ($types as $type) {
+            $type_options[$type->id] = $type->type;
+        }
+        return $type_options;
     }
 }

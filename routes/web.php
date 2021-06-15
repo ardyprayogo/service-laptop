@@ -53,11 +53,19 @@ Route::group(array('middleware'=> ['auth']), function() {
                 ->name('service.types.json');
     });
 
-    //service
-    Route::get('/services', [App\Http\Controllers\ServiceController::class, 'index'])
-            ->name('services');
-    Route::get('/services-json', [App\Http\Controllers\ServiceController::class, 'getServices'])
-            ->name('service.json');
+    //services
+    Route::prefix('services')->group(function () {
+        Route::get('/', [App\Http\Controllers\ServiceController::class, 'index'])    
+                ->name('services');
+        Route::any('/create', [App\Http\Controllers\ServiceController::class, 'create'])    
+                ->name('services');
+        Route::any('/update/{id}', [App\Http\Controllers\ServiceController::class, 'update'])    
+                ->name('services');
+        Route::get('/delete/{id}', [App\Http\Controllers\ServiceController::class, 'destroy'])    
+                ->name('services');
+        Route::get('/json', [App\Http\Controllers\ServiceController::class, 'getServices'])
+                ->name('services.json');
+    });
 
 });
 
