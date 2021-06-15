@@ -10,4 +10,9 @@ class ServiceTypes extends Model
     use HasFactory;
 
     protected $table = 'ms_service_types';
+
+    protected $fillable = [
+        'type',
+        'service_desc'
+    ];
 }

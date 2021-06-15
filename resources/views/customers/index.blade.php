@@ -3,7 +3,7 @@
 @section('content')
 <div class="card o-hidden border-0 shadow-lg py-5 px-5">
     <div class="align-items-right pb-5">
-        <a href="{{ url('customers/create') }}" class="btn btn-success btn-sm">Tambah</a>
+        <a href="{{ url('customers/create') }}" class="btn btn-success btn-sm">Create</a>
     </div>
     @if (session('success'))
         <div class="alert alert-success alert-block">

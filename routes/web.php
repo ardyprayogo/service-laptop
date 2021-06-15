@@ -30,20 +30,29 @@ Route::group(array('middleware'=> ['auth']), function() {
         Route::get('/', [App\Http\Controllers\CustomersController::class, 'index'])    
                 ->name('customers');
         Route::any('/create', [App\Http\Controllers\CustomersController::class, 'create'])    
-                ->name('customers.create');
+                ->name('customers');
         Route::any('/update/{id}', [App\Http\Controllers\CustomersController::class, 'update'])    
-                ->name('customers.udpate');
+                ->name('customers');
         Route::get('/delete/{id}', [App\Http\Controllers\CustomersController::class, 'destroy'])    
-                ->name('customers.delete');
+                ->name('customers');
         Route::get('/json', [App\Http\Controllers\CustomersController::class, 'getCustomers'])
                 ->name('customers.json');
     });
-   
+
     //service-types
-    Route::get('/service-types', [App\Http\Controllers\ServiceController::class, 'indexType'])
-            ->name('service.types');
-    Route::get('/service-types-json', [App\Http\Controllers\ServiceController::class, 'getServiceTypes'])
-            ->name('service.types.json');
+    Route::prefix('service-types')->group(function () {
+        Route::get('/', [App\Http\Controllers\ServiceController::class, 'indexType'])    
+                ->name('service.types');
+        Route::any('/create', [App\Http\Controllers\ServiceController::class, 'createType'])    
+                ->name('service.types');
+        Route::any('/update/{id}', [App\Http\Controllers\ServiceController::class, 'updateType'])    
+                ->name('service.types');
+        Route::get('/delete/{id}', [App\Http\Controllers\ServiceController::class, 'destroyType'])    
+                ->name('service.types');
+        Route::get('/json', [App\Http\Controllers\ServiceController::class, 'getServiceTypes'])
+                ->name('service.types.json');
+    });
+
     //service
     Route::get('/services', [App\Http\Controllers\ServiceController::class, 'index'])
             ->name('services');
