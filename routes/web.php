@@ -26,10 +26,19 @@ Route::group(array('middleware'=> ['auth']), function() {
     Route::get('/user-json', [App\Http\Controllers\UserController::class, 'getUsers'])
             ->name('user.json');
     //customers
-    Route::get('/customers', [App\Http\Controllers\CustomersController::class, 'index'])    
-            ->name('customers');
-    Route::get('/customers-json', [App\Http\Controllers\CustomersController::class, 'getCustomers'])
-            ->name('customers.json');
+    Route::prefix('customers')->group(function () {
+        Route::get('/', [App\Http\Controllers\CustomersController::class, 'index'])    
+                ->name('customers');
+        Route::any('/create', [App\Http\Controllers\CustomersController::class, 'create'])    
+                ->name('customers.create');
+        Route::any('/update/{id}', [App\Http\Controllers\CustomersController::class, 'update'])    
+                ->name('customers.udpate');
+        Route::get('/delete/{id}', [App\Http\Controllers\CustomersController::class, 'destroy'])    
+                ->name('customers.delete');
+        Route::get('/json', [App\Http\Controllers\CustomersController::class, 'getCustomers'])
+                ->name('customers.json');
+    });
+   
     //service-types
     Route::get('/service-types', [App\Http\Controllers\ServiceController::class, 'indexType'])
             ->name('service.types');

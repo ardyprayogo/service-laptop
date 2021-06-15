@@ -43,7 +43,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ Route::is('home') ? 'active' : '' }} {{ Route::is('/') ? 'active' : '' }}">
+            <li class="nav-item {{ Route::is('home') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('home') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -57,12 +57,12 @@
                 Management
             </div>
             <li class="nav-item {{ Route::is('user') ? 'active' : '' }}">
-              <a class="nav-link" href="{{ route('user') }}">
+              <a class="nav-link" href="{{ url('user') }}">
                   <i class="fas fa-fw fa-user"></i>
                   <span>Admin</span></a>
             </li>
             <li class="nav-item {{ Route::is('customers') ? 'active' : '' }}">
-              <a class="nav-link" href="{{ route('customers') }}">
+              <a class="nav-link" href="{{ url('customers') }}">
                   <i class="fas fa-fw fa-address-book"></i>
                   <span>Customers</span></a>
             </li>
@@ -75,12 +75,12 @@
                 Services
             </div>
             <li class="nav-item {{ Route::is('service.types') ? 'active' : '' }}">
-              <a class="nav-link" href="{{ route('service.types') }}">
+              <a class="nav-link" href="{{ url('service-types') }}">
                   <i class="fas fa-fw fa-database"></i>
                   <span>Service Types</span></a>
             </li>
             <li class="nav-item {{ Route::is('services') ? 'active' : '' }}">
-              <a class="nav-link" href="{{ route('services') }}">
+              <a class="nav-link" href="{{ url('services') }}">
                   <i class="fas fa-fw fa-wrench"></i>
                   <span>Services</span></a>
             </li>
@@ -92,7 +92,7 @@
                 Transactions
             </div>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('home') }}">
+              <a class="nav-link" href="{{ url('home') }}">
                   <i class="fas fa-fw fa-hdd"></i>
                   <span>Service Transactions</span></a>
             </li>

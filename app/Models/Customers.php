@@ -10,5 +10,11 @@ class Customers extends Model
     use HasFactory;
     protected $table = 'ms_customers';
 
-    
+    protected $fillable = [
+        'customer',
+        'telp',
+        'email',
+        'gender',
+        'address'
+    ];
 }
