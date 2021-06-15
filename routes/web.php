@@ -20,11 +20,21 @@ Route::group(array('middleware'=> ['auth']), function() {
     //home
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
             ->name('home');
+            
     //user
-    Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])
-            ->name('user');
-    Route::get('/user-json', [App\Http\Controllers\UserController::class, 'getUsers'])
-            ->name('user.json');
+    Route::prefix('user')->group(function () {
+        Route::get('/', [App\Http\Controllers\UserController::class, 'index'])    
+                ->name('user');
+        Route::any('/create', [App\Http\Controllers\UserController::class, 'create'])    
+                ->name('user');
+        Route::any('/update/{id}', [App\Http\Controllers\UserController::class, 'update'])    
+                ->name('user');
+        Route::get('/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])    
+                ->name('user');
+        Route::get('/json', [App\Http\Controllers\UserController::class, 'getUsers'])
+                ->name('user.json');
+    });
+
     //customers
     Route::prefix('customers')->group(function () {
         Route::get('/', [App\Http\Controllers\CustomersController::class, 'index'])    
