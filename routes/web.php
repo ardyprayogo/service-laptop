@@ -77,6 +77,15 @@ Route::group(array('middleware'=> ['auth']), function() {
                 ->name('services.json');
     });
 
+    Route::prefix('transaction')->group(function () {
+        Route::get('/', [App\Http\Controllers\TransactionController::class, 'index'])    
+                ->name('transaction');
+        Route::any('/create', [App\Http\Controllers\TransactionController::class, 'create'])    
+                ->name('transaction');
+        Route::get('/json', [App\Http\Controllers\TransactionController::class, 'getTransaction'])
+                ->name('transaction.json');
+    });
+
 });
 
 

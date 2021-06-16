@@ -91,11 +91,18 @@
             <div class="sidebar-heading">
                 Transactions
             </div>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('home') }}">
+            <li class="nav-item {{ Route::is('transaction') ? 'active' : '' }}">
+              <a class="nav-link" href="{{ url('transaction') }}">
                   <i class="fas fa-fw fa-hdd"></i>
                   <span>Service Transactions</span></a>
             </li>
+
+            <li class="nav-item {{ Route::is('transaction-done') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('transaction/done') }}">
+                    <i class="fas fa-fw fa-laptop"></i>
+                    <span>Service Report</span></a>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
