@@ -88,9 +88,13 @@ Route::group(array('middleware'=> ['auth']), function() {
                 ->name('transaction');
         Route::any('/create', [App\Http\Controllers\TransactionController::class, 'create'])    
                 ->name('transaction');
+        Route::get('/report', [App\Http\Controllers\TransactionController::class, 'report'])    
+                ->name('transaction-report');
         Route::get('/json', [App\Http\Controllers\TransactionController::class, 'getTransaction'])
                 ->name('transaction.json');
-    });
+        Route::get('/json-report', [App\Http\Controllers\TransactionController::class, 'getTransactionReport'])
+                ->name('transaction.json');
+});
 
 });
 

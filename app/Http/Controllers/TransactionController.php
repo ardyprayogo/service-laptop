@@ -70,12 +70,22 @@ class TransactionController extends Controller
         return $data;
     }
 
+    public function getTransactionReport(Request $request) {
+        $request = $request->all();
+        $data = $this->repository->getReport($request);
+        return $data;
+    }
+
     public function finish($id) {
         $finish = $this->repository->finishService($id);
         if ($finish)
             return redirect('transaction')->with('success', 'Transaction finished!');
 
             return redirect()->back();
+    }
+
+    public function report() {
+        return view('transaction/report');
     }
 
 }

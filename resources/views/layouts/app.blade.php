@@ -97,8 +97,8 @@
                   <span>Service Transactions</span></a>
             </li>
 
-            <li class="nav-item {{ Route::is('transaction-done') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('transaction/done') }}">
+            <li class="nav-item {{ Route::is('transaction-report') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('transaction/report') }}">
                     <i class="fas fa-fw fa-laptop"></i>
                     <span>Service Report</span></a>
             </li>

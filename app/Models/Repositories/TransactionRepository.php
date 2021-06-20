@@ -184,4 +184,25 @@ class TransactionRepository extends Model
         $h->save();
         return true;
     }
+
+    public function getReport($request) {
+
+        $data = $this->h->select(
+            'tr_service_h.*',
+            'ms_customers.customer',
+            'ms_customers.telp'
+            )
+            ->join('ms_customers', 'tr_service_h.customer_id', '=', 'ms_customers.id')
+            ->where('tr_service_h.service_status', '01');
+            if (isset($request['date_start']) && isset($request['date_end'])) {
+                $data = $data->where('date_time', '>=', $request['date_start'].' 00:00:00')
+                            ->where('date_time', '<=', $request['date_end'].' 23:59:59');
+            }
+            
+            $date = $data->orderBy('date_time', 'DESC')
+                        ->get();
+        return Datatables::of($data)
+                            ->addIndexColumn()
+                            ->make(true);
+    }
 }
