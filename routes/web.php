@@ -80,6 +80,8 @@ Route::group(array('middleware'=> ['auth']), function() {
     Route::prefix('transaction')->group(function () {
         Route::get('/', [App\Http\Controllers\TransactionController::class, 'index'])    
                 ->name('transaction');
+        Route::get('/view/{id}', [App\Http\Controllers\TransactionController::class, 'view'])    
+                ->name('transaction');
         Route::any('/create', [App\Http\Controllers\TransactionController::class, 'create'])    
                 ->name('transaction');
         Route::get('/json', [App\Http\Controllers\TransactionController::class, 'getTransaction'])

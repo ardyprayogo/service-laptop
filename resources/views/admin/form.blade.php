@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', isset($model) ? 'Update Customers' : 'Create Customers')
+@section('title', isset($model) ? 'Update User' : 'Create User')
 @section('content')
 <div class="card o-hidden border-0 shadow-lg py-5 px-5">
     @if (isset($model))
