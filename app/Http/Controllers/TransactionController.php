@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Repositories\TransactionRepository;
 use App\Models\Services;
-use Auth;
-use DB;
-use Carbon\Carbon;
 
 
 class TransactionController extends Controller
@@ -38,7 +35,14 @@ class TransactionController extends Controller
         $request = $request->all();
         $header = $this->repository->getTransaction($id);
         $details = $this->repository->getTransactionDetail($id);
-        return view('transaction/view', compact('header', 'details'));
+        return view('transaction/view', compact('header', 'details', 'id'));
+    }
+
+    public function print(Request $request, $id) {
+        $request = $request->all();
+        $header = $this->repository->getTransaction($id);
+        $details = $this->repository->getTransactionDetail($id);
+        return view('transaction/print', compact('header', 'details', 'id'));
     }
 
     public function create(Request $request) {
@@ -49,9 +53,9 @@ class TransactionController extends Controller
             if ($validation->fails())
                 return redirect()->back()->withInput()->withErrors($validation->errors());
             
-            $insertTransaction = $this->createTransaction($input);
+            $insertTransaction = $this->repository->createTransaction($input);
             if ($insertTransaction['result'])
-                return redirect('transaction')->with('success', 'Transaction created!');
+                return redirect('transaction')->with('success', 'Transaction - '.$insertTransaction['code'].' created!');
         }
 
 
@@ -64,6 +68,14 @@ class TransactionController extends Controller
     public function getTransaction() {
         $data = $this->repository->getAllTransaction();
         return $data;
+    }
+
+    public function finish($id) {
+        $finish = $this->repository->finishService($id);
+        if ($finish)
+            return redirect('transaction')->with('success', 'Transaction finished!');
+
+            return redirect()->back();
     }
 
 }

@@ -18,6 +18,7 @@
         <table class="table table-bordered" id="service-types-table" width=100%>
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Service Type</th>
                     <th>Keterangan</th>
                     <th>Actions</th>
@@ -36,6 +37,7 @@
             serverSide: true,
             ajax: "{{url('service-types/json')}}",
             columns: [
+                {data: 'DT_RowIndex', orderable: false, searchable: false},
                 {data: 'type', name: 'type'},
                 {data: 'service_desc', name: 'service_desc'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}

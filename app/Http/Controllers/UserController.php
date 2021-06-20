@@ -78,6 +78,7 @@ class UserController extends Controller
     public function getUsers(Request $request) {
         $data = $this->model->where('status', '00')->get();
         return Datatables::of($data)
+                            ->addIndexColumn()
                             ->addColumn('action', function($row){
                                 $btn = '<a href="'.url('user/update').'/'.$row->id.'" class="edit btn btn-primary btn-sm">Edit</a>';
                                 $btn = $btn.' <a href="'.url('user/delete').'/'.$row->id.'" class="btn btn-danger btn-sm">Delete</a>';

@@ -118,6 +118,7 @@ class ServiceController extends Controller
     public function getServiceTypes() {
         $data = $this->type->where('status', '00')->get();
         return Datatables::of($data)
+                            ->addIndexColumn()
                             ->addColumn('action', function($row){
                                 $btn = '<a href="'.url('service-types/update').'/'.$row->id.'" class="edit btn btn-primary btn-sm">Edit</a>';
                                 $btn = $btn.' <a href="'.url('service-types/delete').'/'.$row->id.'" class="btn btn-danger btn-sm">Delete</a>';
@@ -133,6 +134,7 @@ class ServiceController extends Controller
                             ->select('ms_services.*', 'ms_service_types.type')
                             ->get();
         return Datatables::of($data)
+                            ->addIndexColumn()
                             ->addColumn('action', function($row){
                                 $btn = '<a href="'.url('services/update').'/'.$row->id.'" class="edit btn btn-primary btn-sm">Edit</a>';
                                 $btn = $btn.' <a href="'.url('services/delete').'/'.$row->id.'" class="btn btn-danger btn-sm">Delete</a>';

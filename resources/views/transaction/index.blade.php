@@ -18,8 +18,10 @@
         <table class="table table-bordered" id="transaction-table" width=100%>
             <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>No</th>
+                    <th>Tanggal</th>
                     <th>Nomor Service</th>
+                    <th>Status</th>
                     <th>Customer</th>
                     <th>Telp</th>
                     <th>Laptop</th>
@@ -40,8 +42,10 @@
             serverSide: true,
             ajax: "{{url('transaction/json')}}",
             columns: [
+                {data: 'DT_RowIndex', orderable: false, searchable: false},
                 {data: 'date_time', name: 'date_time'},
                 {data: 'service_code', name: 'service_code'},
+                {data: 'status', name: 'status'},
                 {data: 'customer', name: 'customer'},
                 {data: 'telp', name: 'telp'},
                 {data: 'laptop', name: 'laptop'},

@@ -46,7 +46,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="dp">Down Payment*</label>
-                {!! Form::text('dp', null, ['class' => 'form-control', 'dp' => 'case']) !!}
+                {!! Form::number('dp', 0, ['class' => 'form-control', 'dp' => 'case']) !!}
                 @error('dp')
                     <div class="text-danger">
                         <small>{{ $message }}</small>
@@ -70,7 +70,7 @@
         <div class="col-md-5" id="form-prices">
             <div class="form-group">
                 <label for="price">Harga (Harga Default = 0)</label>
-                {!! Form::text('prices[]', 0, ['class' => 'form-control', 'id' => 'price']) !!}
+                {!! Form::number('prices[]', 0, ['class' => 'form-control', 'id' => 'price']) !!}
             </div>
         </div>
         <div class="col-md-2 btn-services">
@@ -102,7 +102,7 @@
     $(document).ready(function(){
         $("#custom").click(function(){
             $("#form-services").clone().appendTo( "#services" );
-            $("#form-prices").clone().appendTo( "#services" );
+            $("#form-prices").clone().appendTo( "#services" ).find("input[type='number']").val("0");
         });
     });
 </script>

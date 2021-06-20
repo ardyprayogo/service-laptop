@@ -18,6 +18,7 @@
         <table class="table table-bordered" id="customers-table" width=100%>
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Nama</th>
                     <th>Telp</th>
                     <th>Email</th>
@@ -38,6 +39,7 @@
             serverSide: true,
             ajax: "{{ url('customers/json') }}",
             columns: [
+                {data: 'DT_RowIndex', orderable: false, searchable: false},
                 {data: 'customer', name: 'customer'},
                 {data: 'telp', name: 'telp'},
                 {data: 'email', name: 'email'},

@@ -18,6 +18,7 @@
         <table class="table table-bordered" id="users-table" width=100%>
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Alamat</th>
@@ -37,6 +38,7 @@
             serverSide: true,
             ajax: "{{ url('user/json') }}",
             columns: [
+                {data: 'DT_RowIndex', orderable: false, searchable: false},
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'address', name: 'address'},

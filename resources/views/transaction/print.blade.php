@@ -1,16 +1,8 @@
-@extends('layouts.app')
-@section('title', 'View Transaction')
+@extends('layouts.blank')
+@section('title', $header->service_code)
+
 @section('content')
-<div class="card o-hidden border-0 shadow-lg py-5 px-5">
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <div class="form-group">
-                <a class="btn btn-primary btn-circle btn-lg" href="{{ url('transaction/print').'/'.$id }}" target="__BLANK">
-                    <i class="fas fa-print"></i>
-                </a>
-            </div>
-        </div>
-    </div>
+<div class="container">
     <div class="row">
         <div class="col-md-12 text-center">
             <h1>Invoice</h1>
@@ -54,7 +46,7 @@
             {{ $header->case }}
         </div>
     </div>
-
+    
     <div class="row">
         <div class="col-md-12">
             <h5 class="my-3">
@@ -62,12 +54,12 @@
             </h5>
             <div class="table-responsive">
                 <table class="table table-bordered" id="customers-table" width=100%>
-                    <thead class="text-center">
+                    <thead>
                         <tr>
-                            <th width="5%">No</th>
-                            <th>Service</th>
-                            <th>Tipe</th>
-                            <th>Biaya</th>
+                            <th width="5%" class="text-center">No</th>
+                            <th class="text-center">Service</th>
+                            <th class="text-center">Tipe</th>
+                            <th class="text-center">Biaya</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,27 +102,24 @@
             </div>
         @endif
     </div>
-
-    @if ($header->service_status == '00')
-        <hr class="sidebar-divider my-5">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <div class="form-group">
-                    <h4 class="text-success">Selesai</h4>
-                    <a class="btn btn-success btn-circle btn-lg" href="{{ url('transaction/finish').'/'.$id }}">
-                        <i class="fas fa-check"></i>
-                    </a>
-                </div>
-            </div>
+    <div class="row mt-5">
+        <div class="col-md-6 text-center">
+            <p>Kasir</p>
+            <p class="mt-5">
+                {{ Auth::user()->name }}
+            </p>
         </div>
-    @endif
-    
-    
+        <div class="col-md-6 text-center">
+            <p>Customer</p>
+            <p class="mt-5">
+                {{ $header->customer }}
+            </p>
+        </div>
+    </div>
 </div>
-@endsection
 
-@section('script')
 <script>
-
+    window.print();
 </script>
+
 @endsection

@@ -6,7 +6,9 @@ use App\Models\TrServiceD;
 use App\Models\TrServiceH;
 use App\Models\Customers;
 use App\Models\Services;
-
+use Auth;
+use DB;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DataTables;
@@ -102,6 +104,7 @@ class TransactionRepository extends Model
         
         return [
             'result' => true,
+            'code' => $h->service_code,
             'message' => 'Transaction created!'
         ];
         
@@ -115,12 +118,18 @@ class TransactionRepository extends Model
             'ms_customers.customer',
             'ms_customers.telp',
             'tr_service_h.laptop',
-            'tr_service_h.case'
+            'tr_service_h.case',
+            'tr_service_h.service_status',
             )
             ->join('ms_customers', 'tr_service_h.customer_id', '=', 'ms_customers.id')
+            ->where('tr_service_h.service_status', '00')
             ->orderBy('date_time', 'DESC')
             ->get();
         return Datatables::of($data)
+                            ->addIndexColumn()
+                            ->addColumn('status', function($row){
+                                return $row->service_status == '00' ? 'Dalam Proses' : 'Selesai';
+                            })
                             ->addColumn('action', function($row){
                                 $btn = '<a href="'.url('transaction/view').'/'.$row->id.'" class="edit btn btn-primary btn-sm">View</a>';
                                 $btn = $btn.' <a href="'.url('transaction/finish').'/'.$row->id.'" class="btn btn-danger btn-sm">Finish</a>';
@@ -167,5 +176,12 @@ class TransactionRepository extends Model
         ->get();
         
         return $dataD;
+    }
+
+    public function finishService($id) {
+        $h = $this->h->find($id);
+        $h->service_status = '01';
+        $h->save();
+        return true;
     }
 }

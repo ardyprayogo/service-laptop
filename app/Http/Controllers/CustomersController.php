@@ -32,6 +32,7 @@ class CustomersController extends Controller
     public function getCustomers(Request $request) {
         $data = $this->model->where('status', '00')->get();
         return Datatables::of($data)
+                            ->addIndexColumn()
                             ->addColumn('action', function($row){
                                 $btn = '<a href="'.url('customers/update').'/'.$row->id.'" class="edit btn btn-primary btn-sm">Edit</a>';
                                 $btn = $btn.' <a href="'.url('customers/delete').'/'.$row->id.'" class="btn btn-danger btn-sm">Delete</a>';
