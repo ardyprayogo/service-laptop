@@ -2,8 +2,11 @@
 @section('title', 'Transaction')
 @section('content')
 <div class="card o-hidden border-0 shadow-lg py-5 px-5">
-    <div class="align-items-right pb-5">
-        <a href="{{ url('transaction/create') }}" class="btn btn-success btn-sm">Create</a>
+    <div class="text-right pb-5">
+        <a href="{{ url('transaction/create') }}" class="btn btn-success btn-sm">
+            <i class="fas fa-fw fa-plus"></i>
+            <span>Tambah</span> 
+        </a>
     </div>
     @if (session('success'))
         <div class="alert alert-success alert-block">
@@ -16,11 +19,11 @@
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Service Code</th>
+                    <th>Nomor Service</th>
                     <th>Customer</th>
                     <th>Telp</th>
                     <th>Laptop</th>
-                    <th>Case</th>
+                    <th>Keluhan</th>
                     <th>Actions</th>
                 </tr>
             </thead>

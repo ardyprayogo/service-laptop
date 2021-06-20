@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="service_desc">Type Description*</label>
+                <label for="service_desc">Keterangan*</label>
                 {!! Form::text('service_desc', null, ['class' => 'form-control', 'id' => 'service_desc']) !!}
                 @error('service_desc')
                     <div class="text-danger">

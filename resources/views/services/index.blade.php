@@ -2,8 +2,11 @@
 @section('title', 'Services')
 @section('content')
 <div class="card o-hidden border-0 shadow-lg py-5 px-5">
-    <div class="align-items-right pb-5">
-        <a href="{{ url('services/create') }}" class="btn btn-success btn-sm">Create</a>
+    <div class="text-right pb-5">
+        <a href="{{ url('services/create') }}" class="btn btn-success btn-sm">
+            <i class="fas fa-fw fa-plus"></i>
+            <span>Tambah</span> 
+        </a>
     </div>
     @if (session('success'))
         <div class="alert alert-success alert-block">
@@ -16,9 +19,9 @@
             <thead>
                 <tr>
                     <th>Service</th>
-                    <th>Service Type</th>
-                    <th>Price</th>
-                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Harga</th>
+                    <th>Keterangan</th>
                     <th>Actions</th>
                 </tr>
             </thead>

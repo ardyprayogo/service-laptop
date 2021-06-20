@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="name">Name*</label>
+                <label for="name">Nama*</label>
                 {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) !!}
                 @error('name')
                     <div class="text-danger">
@@ -55,7 +55,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="address">Address*</label>
+                <label for="address">Alamat*</label>
                 {!! Form::textarea('address', null, ['class' => 'form-control', 'rows' => '3']) !!}
                 @error('address')
                     <div class="text-danger">

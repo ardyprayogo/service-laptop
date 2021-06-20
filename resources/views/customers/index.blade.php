@@ -2,8 +2,11 @@
 @section('title', 'Customers')
 @section('content')
 <div class="card o-hidden border-0 shadow-lg py-5 px-5">
-    <div class="align-items-right pb-5">
-        <a href="{{ url('customers/create') }}" class="btn btn-success btn-sm">Create</a>
+    <div class="text-right pb-5">
+        <a href="{{ url('customers/create') }}" class="btn btn-success btn-sm">
+            <i class="fas fa-fw fa-plus"></i>
+            <span>Tambah</span> 
+        </a>
     </div>
     @if (session('success'))
         <div class="alert alert-success alert-block">
@@ -15,10 +18,10 @@
         <table class="table table-bordered" id="customers-table" width=100%>
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Nama</th>
                     <th>Telp</th>
                     <th>Email</th>
-                    <th>Address</th>
+                    <th>Alamat</th>
                     <th>Actions</th>
                 </tr>
             </thead>

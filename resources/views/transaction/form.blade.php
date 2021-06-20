@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-12">
             <div class="form-group">
-                <label for="laptop">Case</label>
+                <label for="laptop">Keluhan</label>
                 {!! Form::textarea('case', null, ['class' => 'form-control', 'rows' => '3', 'id' => 'case']) !!}
                 @error('case')
                     <div class="text-danger">
@@ -45,7 +45,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="dp">DP*</label>
+                <label for="dp">Down Payment*</label>
                 {!! Form::text('dp', null, ['class' => 'form-control', 'dp' => 'case']) !!}
                 @error('dp')
                     <div class="text-danger">
@@ -69,14 +69,15 @@
         </div>
         <div class="col-md-5" id="form-prices">
             <div class="form-group">
-                <label for="price">Custom Price (Default price is 0)</label>
+                <label for="price">Harga (Harga Default = 0)</label>
                 {!! Form::text('prices[]', 0, ['class' => 'form-control', 'id' => 'price']) !!}
             </div>
         </div>
         <div class="col-md-2 btn-services">
             <div class="form-group">
                 <div id="custom" class="btn btn-success btn-block">
-                    Add
+                    <i class="fas fa-fw fa-plus"></i>
+                    <span>Tambah Service</span>
                 </div>
             </div>
         </div>

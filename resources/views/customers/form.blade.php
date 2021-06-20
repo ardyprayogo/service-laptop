@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label for="customer">Customer Name*</label>
+                <label for="customer">Nama*</label>
                 {!! Form::text('customer', null, ['class' => 'form-control', 'id' => 'customer']) !!}
                 @error('customer')
                     <div class="text-danger">
@@ -44,17 +44,17 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="gender">Sex*</label>
+                <label for="gender">Jenis Kelamin*</label>
                 @if (isset($model))
-                    {!! Form::select('gender', ['l' => 'Male', 'p' => 'Female'], $model['gender'], ['class' => 'form-control form-select', 'id' => 'gender']) !!}   
+                    {!! Form::select('gender', ['l' => 'Laki-laki', 'p' => 'Perempuan'], $model['gender'], ['class' => 'form-control form-select', 'id' => 'gender']) !!}   
                 @else
-                    {!! Form::select('gender', ['l' => 'Male', 'p' => 'Female'], null, ['class' => 'form-control form-select', 'id' => 'gender']) !!} 
+                    {!! Form::select('gender', ['l' => 'Laki-laki', 'p' => 'Perempuan'], null, ['class' => 'form-control form-select', 'id' => 'gender']) !!} 
                 @endif
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="address">Address*</label>
+                <label for="address">Alamat*</label>
                 {!! Form::textarea('address', null, ['class' => 'form-control', 'rows' => '3']) !!}
                 @error('address')
                     <div class="text-danger">

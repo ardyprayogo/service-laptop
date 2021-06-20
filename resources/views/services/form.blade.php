@@ -32,7 +32,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="price">Price*</label>
+                <label for="price">Harga*</label>
                 {!! Form::text('price', null, ['class' => 'form-control', 'id' => 'price']) !!}
                 @error('price')
                     <div class="text-danger">
@@ -43,7 +43,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="desc">Description*</label>
+                <label for="desc">Keterangan*</label>
                 {!! Form::text('desc', null, ['class' => 'form-control', 'id' => 'desc']) !!}
                 @error('desc')
                     <div class="text-danger">
