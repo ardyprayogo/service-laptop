@@ -101,13 +101,15 @@ class ServiceController extends Controller
 
     public function destroy($id) {
         $model = $this->service->find($id);
-        $model->delete();
+        $model->status = 99;
+        $model->save();
         return redirect('services')->with('success', 'Service deleted!');
     }
 
     public function destroyType($id) {
         $model = $this->type->find($id);
-        $model->delete();
+        $model->status = 99;
+        $model->save();
         return redirect('service-types')->with('success', 'Type deleted!');
     }
 

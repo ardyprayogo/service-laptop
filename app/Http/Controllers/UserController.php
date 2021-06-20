@@ -71,7 +71,8 @@ class UserController extends Controller
 
     public function destroy($id) {
         $model = $this->model->find($id);
-        $model->delete();
+        $model->status = 99;
+        $model->save();
         return redirect('user')->with('success', 'User deleted!');
     }
 

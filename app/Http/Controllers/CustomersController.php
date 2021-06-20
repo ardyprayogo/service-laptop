@@ -73,7 +73,8 @@ class CustomersController extends Controller
 
     public function destroy($id) {
         $model = $this->model->find($id);
-        $model->delete();
+        $model->status = 99;
+        $model->save();
         return redirect('customers')->with('success', 'Customer deleted!');
     }
 
