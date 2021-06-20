@@ -64,7 +64,7 @@
                     {data: 'DT_RowIndex', orderable: false, searchable: false},
                     {data: 'date_time', name: 'date_time', orderable: false},
                     {data: 'service_code', name: 'service_code', orderable: false},
-                    {data: 'customer', name: 'customer', orderable: false},
+                    {data: 'customer', name: 'ms_customers.customer', orderable: false},
                     {data: 'laptop', name: 'laptop', orderable: false},
                     {data: 'total_price', name: 'total_price', orderable: false}
                 ],
