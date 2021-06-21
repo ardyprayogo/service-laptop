@@ -6,7 +6,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="date_start">Tanggal Awal</label>
-                <input type="date" id="filter_date_start" class="form-control datepicker">
+                <input type="date" id="filter_date_start" class="form-control">
             </div>
         </div>
         <div class="col-md-4">
@@ -15,12 +15,20 @@
                 <input type="date" id="filter_date_end" class="form-control">
             </div>
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-2 text-center">
             <div class="form-group">
-                <button class="btn btn-success btn-md btn-block" id="filter_button">
+                <button class="btn btn-primary btn-md btn-block" type="button" id="filter_button">
                     <i class="fas fa-filter"></i>
                     <span>Filter</span>
                 </button>
+            </div>
+        </div>
+        <div class="col-md-2 text-center">
+            <div class="form-group">
+                <a class="btn btn-success btn-md btn-block" id="filter_export">
+                    <i class="fas fa-download"></i>
+                    <span>Excel</span>
+                </a>
             </div>
         </div>
     </div>
@@ -78,6 +86,14 @@
         if (date_start != '' && date_end != '') {
             $('#transaction-table').DataTable().destroy();
             generateDataTable(date_start, date_end);
+        }
+    });
+
+    $('#filter_export').click(function() {
+        var date_start = $('#filter_date_start').val();
+        var date_end = $('#filter_date_end').val();
+        if (date_start != '' && date_end != '') {
+            window.location = "{{ url('transaction/excel?') }}date_start="+date_start+'&date_end='+date_end;
         }
     });
     

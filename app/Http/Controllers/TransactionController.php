@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Repositories\TransactionRepository;
 use App\Models\Services;
+use App\Exports\BasicExcelReport;
+use Excel;
 
 
 class TransactionController extends Controller
@@ -86,6 +88,13 @@ class TransactionController extends Controller
 
     public function report() {
         return view('transaction/report');
+    }
+
+    public function export(Request $request) {
+        $date = date('Y-m-d');
+        $request = $request->all();
+        $data = $this->repository->getExcel($request);
+        return Excel::download(new BasicExcelReport($data), 'Report-'.$date.'.xlsx');
     }
 
 }

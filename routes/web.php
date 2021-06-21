@@ -94,6 +94,8 @@ Route::group(array('middleware'=> ['auth']), function() {
                 ->name('transaction.json');
         Route::get('/json-report', [App\Http\Controllers\TransactionController::class, 'getTransactionReport'])
                 ->name('transaction.json');
+        Route::get('/excel', [App\Http\Controllers\TransactionController::class, 'export'])    
+                ->name('transaction');
 });
 
 });

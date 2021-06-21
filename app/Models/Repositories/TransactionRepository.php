@@ -199,10 +199,33 @@ class TransactionRepository extends Model
                             ->where('date_time', '<=', $request['date_end'].' 23:59:59');
             }
             
-            $date = $data->orderBy('date_time', 'DESC')
+            $data = $data->orderBy('date_time', 'DESC')
                         ->get();
         return Datatables::of($data)
                             ->addIndexColumn()
                             ->make(true);
+    }
+
+    public function getExcel($request) {
+        $data = $this->h->select(
+            'tr_service_h.id',
+            'tr_service_h.service_code',
+            'tr_service_h.date_time',
+            'ms_customers.customer',
+            'users.name',
+            'tr_service_h.total_price'
+            )
+            ->join('ms_customers', 'tr_service_h.customer_id', '=', 'ms_customers.id')
+            ->join('users', 'tr_service_h.user_id', '=', 'users.id')
+            ->where('tr_service_h.service_status', '01');
+            if (isset($request['date_start']) && isset($request['date_end'])) {
+                $data = $data->where('date_time', '>=', $request['date_start'].' 00:00:00')
+                            ->where('date_time', '<=', $request['date_end'].' 23:59:59');
+            }
+            
+        $data = $data->orderBy('date_time', 'DESC')
+                    ->get();
+
+        return $data;
     }
 }
